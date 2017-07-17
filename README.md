@@ -13,7 +13,7 @@ Basic weather forecast application writen with [RxAndroid](https://github.com/Re
 
 ### License
 
-[EUPL v1.1](https://github.com/irontec/android-kotlin-samples/blob/master/LICENSE.txt)
+[EUPL v1.1](https://github.com/irontec/rxweather-android/blob/master/LICENSE.txt)
 
 ```
 Copyright 2015 Irontec SL
