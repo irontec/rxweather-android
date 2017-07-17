@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+
+    dataBinding {
+        enabled = true
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(
+                    output.outputFile.parent,
+                    output.outputFile.name
+                            .replace(".apk", "-${variant.versionName}-${variant.versionCode}.apk")
+            )
+        }
+    }
+
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.irontec.axier.rxweather"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "URL_ENDPOINT", "\"https://api.apixu.com/v1/\""
+        buildConfigField "String", "APIXU_KEY", "\"239e8bee39ee41e491483051171407\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //enable java8 support
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+//lambdas support
+retrolambda {
+    javaVersion JavaVersion.VERSION_1_7
+}
+
+def SUPPORT = "25.3.1"
+def RETROFIT = "2.3.0"
+def OKHTTP = "3.8.1"
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$SUPPORT"
+    compile "com.android.support:recyclerview-v7:$SUPPORT"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT"
+    compile "com.squareup.retrofit2:converter-gson:$RETROFIT"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT"
+    compile "com.squareup.okhttp3:okhttp:$OKHTTP"
+    compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP"
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    compile 'com.github.bumptech.glide:glide:3.8.0'
+}
