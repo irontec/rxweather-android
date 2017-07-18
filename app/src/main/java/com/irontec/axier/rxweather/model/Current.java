@@ -63,6 +63,6 @@ public class Current {
     }
 
     public String getTemperatureDisplay() {
-        return String.format("%s/%s", getTemperature(), getFeelslike());
+        return String.format("Temperatura actual: %sCº (sensación de %sCº)", getTemperature(), getFeelslike());
     }
 }

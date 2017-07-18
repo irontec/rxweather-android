@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by axier on 14/7/17.
@@ -120,8 +121,12 @@ public class Forecastday {
         }
 
         public String getEpochAsDate() {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
             return sdf.format(new Date(timeEpoch * 1000));
+        }
+
+        public String getTemperatureDisplay() {
+            return String.format("%sCº", temperature);
         }
     }
 
