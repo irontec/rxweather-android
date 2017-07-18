@@ -13,7 +13,6 @@ import com.irontec.axier.rxweather.model.Forecastday
  */
 
 class WeatherAdapter(private val mData: List<Forecastday.Hour>) : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
-    private var layoutInflater: LayoutInflater? = null
 
     class ViewHolder internal constructor(val binding: RowWeatherBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -27,10 +26,9 @@ class WeatherAdapter(private val mData: List<Forecastday.Hour>) : RecyclerView.A
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        if (layoutInflater == null) {
-            layoutInflater = LayoutInflater.from(viewGroup.context)
-        }
-        val binding = DataBindingUtil.inflate<RowWeatherBinding>(layoutInflater!!, R.layout.row_weather, viewGroup, false)
+        val layoutInflater: LayoutInflater? = LayoutInflater.from(viewGroup.context)
+        val binding: RowWeatherBinding = DataBindingUtil.inflate<RowWeatherBinding>(
+                layoutInflater!!, R.layout.row_weather, viewGroup, false)
         return ViewHolder(binding)
     }
 }

@@ -12,7 +12,8 @@ import com.irontec.axier.rxweather.model.Weather
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 class MainActivity : AppCompatActivity() {
-    private var binding: ActivityMainBinding? = null
+
+    var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun doGetBilbaoWeather() {
-        ServiceGenerator.createService<RxWeatherService>(RxWeatherService::class.java)
+        ServiceGenerator.createService(RxWeatherService::class.java)
                 .getWeather(BuildConfig.APIXU_KEY, "Bilbao")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ weather ->
@@ -41,6 +42,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
 
-        private val TAG = MainActivity::class.java!!.getSimpleName()
+        private val TAG = MainActivity::class.java.simpleName
     }
 }
