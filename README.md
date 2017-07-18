@@ -11,7 +11,7 @@ Basic weather forecast application writen with [RxAndroid](https://github.com/Re
 - Change to your desired city on ```MainActivity```
 - Run
 
-![Screenshot](https://raw.githubusercontent.com/irontec/rxweather-android/master/screeshot.png)
+![Screenshot](https://raw.githubusercontent.com/irontec/rxweather-android/master/screenshot.png)
 
 ### License
 
