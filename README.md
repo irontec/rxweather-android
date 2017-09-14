@@ -1,6 +1,6 @@
 # rxweather-android
 
-![RxAndroid](https://raw.githubusercontent.com/irontec/rxweather-android/master/rx.png)
+![RxAndroid](https://raw.githubusercontent.com/irontec/rxweather-android/master/rx.jpg)
 
 Basic weather forecast application writen with [RxAndroid](https://github.com/ReactiveX/RxAndroid), [Retrofit](http://square.github.io/retrofit/) and [Retrolambda](https://github.com/evant/gradle-retrolambda)
 
