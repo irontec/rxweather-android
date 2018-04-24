@@ -12,7 +12,7 @@ import com.irontec.axier.rxweather.model.Forecastday
  * Created by axier on 8/3/17.
  */
 
-class WeatherAdapter(private val mData: List<Forecastday.Hour>) : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
+class WeatherAdapter(private val mData: List<Forecastday>) : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
 
     class ViewHolder internal constructor(val binding: RowWeatherBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -21,8 +21,9 @@ class WeatherAdapter(private val mData: List<Forecastday.Hour>) : RecyclerView.A
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.binding.hour = mData[i]
-        viewHolder.binding.condition = mData[i].condition
+        viewHolder.binding.forecast = mData[i]
+        viewHolder.binding.day = mData[i].day
+        viewHolder.binding.condition = mData[i].day!!.condition
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {

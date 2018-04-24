@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -10,21 +9,19 @@ android {
     }
 
     applicationVariants.all { variant ->
-        variant.outputs.each { output ->
-            output.outputFile = new File(
-                    output.outputFile.parent,
-                    output.outputFile.name
-                            .replace(".apk", "-${variant.versionName}-${variant.versionCode}.apk")
-            )
+        variant.outputs.all { output ->
+            outputFileName = output.outputFile.name
+                    .replace(".apk", "-${variant.versionName}-${variant.versionCode}.apk")
         }
     }
 
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.irontec.axier.rxweather"
         minSdkVersion 16
-        targetSdkVersion 25
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -39,43 +36,33 @@ android {
         }
     }
 
-    //enable java8 support
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
-//lambdas support
-retrolambda {
-    javaVersion JavaVersion.VERSION_1_7
-}
-
-def SUPPORT = "25.3.1"
-def RETROFIT = "2.3.0"
-def OKHTTP = "3.8.1"
+def SUPPORT = "27.1.1"
+def RETROFIT = "2.4.0"
+def OKHTTP = "3.10.0"
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile "com.android.support:appcompat-v7:$SUPPORT"
-    compile "com.android.support:recyclerview-v7:$SUPPORT"
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+    implementation "com.android.support:appcompat-v7:$SUPPORT"
+    implementation "com.android.support:recyclerview-v7:$SUPPORT"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
 
-    compile "com.squareup.retrofit2:retrofit:$RETROFIT"
-    compile "com.squareup.retrofit2:converter-gson:$RETROFIT"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT"
-    compile "com.squareup.okhttp3:okhttp:$OKHTTP"
-    compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP"
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
-    compile 'com.github.bumptech.glide:glide:3.8.0'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    kapt 'com.android.databinding:compiler:2.3.3'
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT"
+    implementation "com.squareup.okhttp3:okhttp:$OKHTTP"
+    implementation "com.squareup.okhttp3:logging-interceptor:$OKHTTP"
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.12'
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    kapt 'com.android.databinding:compiler:3.1.2'
 }
 repositories {
     mavenCentral()

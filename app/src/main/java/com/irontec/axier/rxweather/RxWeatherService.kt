@@ -14,7 +14,8 @@ interface RxWeatherService {
     @GET("forecast.json")
     fun getWeather(
             @Query("key") key: String,
-            @Query("q") city: String
+            @Query("q") city: String,
+            @Query("days") days: String
     ): Observable<Weather>
 
 }

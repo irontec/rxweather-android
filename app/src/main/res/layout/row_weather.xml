@@ -5,8 +5,12 @@
     <data>
 
         <variable
-            name="hour"
-            type="com.irontec.axier.rxweather.model.Forecastday.Hour" />
+            name="forecast"
+            type="com.irontec.axier.rxweather.model.Forecastday" />
+
+        <variable
+            name="day"
+            type="com.irontec.axier.rxweather.model.Forecastday.Day" />
 
         <variable
             name="condition"
@@ -34,19 +38,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{hour.condition.text}" />
+                android:text="@{forecast.date}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{day.condition.text}" />
 
             <TextView
                 android:id="@+id/weather_forecast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{hour.getTemperatureDisplay()}" />
+                android:text="@{day.getTemperatureDisplay()}" />
 
-            <TextView
-                android:id="@+id/weather_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{hour.getEpochAsDate()}" />
+            <!--<TextView-->
+                <!--android:id="@+id/weather_icon"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@{day.getEpochAsDate()}" />-->
         </LinearLayout>
     </LinearLayout>
 </layout>

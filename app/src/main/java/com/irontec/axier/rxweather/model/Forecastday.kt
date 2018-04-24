@@ -1,10 +1,8 @@
 package com.irontec.axier.rxweather.model
 
 import com.google.gson.annotations.SerializedName
-
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
 /**
  * Created by axier on 14/7/17.
@@ -12,6 +10,8 @@ import java.util.Locale
 
 class Forecastday {
 
+    @SerializedName("date")
+    var date: String? = null
     @SerializedName("day")
     var day: Day? = null
     @SerializedName("hour")
@@ -27,6 +27,9 @@ class Forecastday {
         var humidity: Int? = null
         @SerializedName("condition")
         var condition: Condition? = null
+
+        val temperatureDisplay: String
+            get() = String.format("%sCº", maxTemp)
     }
 
     inner class Hour {

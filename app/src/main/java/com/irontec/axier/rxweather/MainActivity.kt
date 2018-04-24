@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-
 import com.irontec.axier.rxweather.databinding.ActivityMainBinding
 import com.irontec.axier.rxweather.model.Weather
-
 import io.reactivex.android.schedulers.AndroidSchedulers
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun doGetBilbaoWeather() {
         ServiceGenerator.createService(RxWeatherService::class.java)
-                .getWeather(BuildConfig.APIXU_KEY, "Bilbao")
+                .getWeather(BuildConfig.APIXU_KEY, "Bilbao", "7")
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ weather ->
                     binding!!.current = weather.current
@@ -35,8 +34,8 @@ class MainActivity : AppCompatActivity() {
     private fun initListView(weather: Weather) {
         val list = binding!!.list
         list.layoutManager = LinearLayoutManager(applicationContext)
-        val adapter = WeatherAdapter(
-                weather.forecast!!.forecastdays!![0].hours!!)
+
+        val adapter = WeatherAdapter(weather.forecast!!.forecastdays!!)
         list.adapter = adapter
     }
 
